@@ -1,0 +1,33 @@
+header {
+  background-color: blueviolet;
+}
+
+.white-text {
+  color: white;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.padding-1em {
+  padding: 1em;
+}
+
+.col-sm-full {
+  width: 100%;
+}
+
+label,
+input,
+textarea {
+  display: block;
+  width: 100%;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+form {
+  background-color: rgb(240, 240, 240);
+  border: 1px solid rgb(189, 189, 189);
+}
