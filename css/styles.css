@@ -1,0 +1,91 @@
+body {
+  background-color: #f0f0f0;
+}
+
+header {
+  background-color: #562b81;
+}
+
+label,
+input,
+textarea {
+  display: block;
+  width: 100%;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+h1,
+h2,
+label {
+  font-family: "Proza Libre", sans-serif;
+}
+
+h2 {
+  font-weight: 100;
+}
+
+input,
+textarea {
+  padding: 0.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgb(189, 189, 189);
+  font-size: 1rem;
+  font-family: "Open Sans", sans-serif;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  color: white;
+  text-transform: uppercase;
+  background-color: #562b81;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+input,
+textarea,
+button {
+  border-radius: 0.25rem;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border: 1px solid rgb(150, 66, 233);
+  box-shadow: 0 0 1px 1px rgba(150, 66, 233, 0.6);
+}
+
+.padding-0 {
+  padding: 0;
+}
+
+.padding-left-0 {
+  padding-left: 0;
+}
+
+.white-text {
+  color: white;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.padding-1em {
+  padding: 1em;
+}
+
+.col-sm-full {
+  width: 100%;
+}
+
+.full-flex {
+  flex-basis: 100%;
+}
+
+.justify-end {
+  justify-content: end;
+}
