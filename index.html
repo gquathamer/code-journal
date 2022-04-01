@@ -10,6 +10,9 @@
     crossorigin="anonymous"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
@@ -22,17 +25,22 @@
   </header>
   <main>
     <div data-view="entry-form" class="container">
-      <form id="create-entry" class="padding-1em">
-        <h1>New Entry</h1>
-        <div class="col-sm-full col-lg-third">
-          <img class="col-sm-full" src="./images/placeholder-image-square.jpg" alt="placeholder-image-square">
+      <form id="create-entry" class="row">
+        <h1 class="full-flex">New Entry</h1>
+        <div class="column-half padding-left-0">
+          <img id="photo-window" class="col-sm-full" src="./images/placeholder-image-square.jpg" alt="placeholder-image-square">
         </div>
-        <label for="title">Title</label>
-        <input type="text" name="title" id="entry-title" required>
-        <label for="photo-url">Photo URL</label>
-        <input type="text" name="photo-url" id="entry-photo" required>
+        <div class="column-half">
+          <label for="title">Title</label>
+          <input type="text" name="title" id="entry-title" required>
+          <label for="photo-url">Photo URL</label>
+          <input type="text" name="photo-url" id="entry-photo" required>
+        </div>
         <label for="notes">Notes</label>
         <textarea name="notes" id="entry-notes" rows="5" required></textarea>
+        <div class="row column-full justify-end padding-0">
+          <button type="submit">SAVE</button>
+        </div>
       </form>
     </div>
   </main>
