@@ -51,6 +51,11 @@ button {
   border-radius: 0.25rem;
 }
 
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
 input:focus,
 textarea:focus {
   outline: none;
