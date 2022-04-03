@@ -94,3 +94,11 @@ textarea:focus {
 .justify-end {
   justify-content: end;
 }
+
+.bottom-margin {
+  margin-bottom: 25px;
+}
+
+.top-margin-0 {
+  margin-top: 0;
+}

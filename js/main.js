@@ -23,3 +23,45 @@ entryForm.addEventListener('submit', function (event) {
   var dataModelString = JSON.stringify(data);
   localStorage.setItem('data-model', dataModelString);
 });
+
+/*
+<li class="row bottom-margin">
+  <div class="column-half padding-left-0">
+    <img id="dummy-entry-1" class="col-sm-full" src="./images/placeholder-image-square.jpg" alt="placeholder-image-square">
+  </div>
+  <div class="column-half">
+    <h2>Journal Entry Title</h2>
+    <p>Journal Entry text to be displayed here</p>
+  </div>
+</li>
+*/
+
+function renderEntry(entry) {
+  var outerListItem = document.createElement('li');
+  outerListItem.setAttribute('class', 'row bottom-margin');
+  var imageDiv = document.createElement('div');
+  imageDiv.setAttribute('class', 'column-half padding-left-0');
+  outerListItem.appendChild(imageDiv);
+  var imageElement = document.createElement('img');
+  imageElement.setAttribute('class', 'col-sm-full');
+  imageElement.setAttribute('src', entry['photo-url']);
+  imageDiv.appendChild(imageElement);
+  var textDiv = document.createElement('div');
+  textDiv.setAttribute('class', 'column-half');
+  outerListItem.appendChild(textDiv);
+  var entryTitle = document.createElement('h2');
+  entryTitle.setAttribute('class', 'top-margin-0');
+  entryTitle.textContent = entry.title;
+  textDiv.appendChild(entryTitle);
+  var entryNotes = document.createElement('p');
+  entryNotes.setAttribute('class', 'top-margin-0');
+  entryNotes.textContent = entry.notes;
+  textDiv.appendChild(entryNotes);
+  return outerListItem;
+}
+
+var viewEntries = document.querySelector('.view-entries');
+
+for (var i = 0; i < data.entries.length; i++) {
+  viewEntries.appendChild(renderEntry(data.entries[i]));
+}
