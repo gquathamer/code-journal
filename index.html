@@ -19,12 +19,17 @@
 </head>
 <body>
   <header>
-    <div class="container">
+    <div class="container row align-items">
       <h2 class="white-text no-margin">Code Journal</h2>
+      <h4 class="white-text no-margin padding-half-em margin-left-em">Entries</h4>
     </div>
   </header>
   <main>
     <div data-view="entries" class="container">
+      <nav class="row space-between top-margin">
+        <h1 class="no-margin font-size-2-em">Entries</h1>
+        <button>NEW</button>
+      </nav>
       <ul class="view-entries">
       </ul>
     </div>
@@ -32,7 +37,7 @@
       <form id="create-entry" class="row">
         <h1 class="full-flex">New Entry</h1>
         <div class="column-half padding-left-0">
-          <img id="photo-window" class="col-sm-full" src="./images/placeholder-image-square.jpg" alt="placeholder-image-square">
+          <img id="photo-window" class="full-width" src="./images/placeholder-image-square.jpg" alt="placeholder-image-square">
         </div>
         <div class="column-half">
           <label for="title">Title</label>

@@ -27,7 +27,7 @@ entryForm.addEventListener('submit', function (event) {
 /*
 <li class="row bottom-margin">
   <div class="column-half padding-left-0">
-    <img id="dummy-entry-1" class="col-sm-full" src="./images/placeholder-image-square.jpg" alt="placeholder-image-square">
+    <img id="dummy-entry-1" class="full-width" src="./images/placeholder-image-square.jpg" alt="placeholder-image-square">
   </div>
   <div class="column-half">
     <h2>Journal Entry Title</h2>
@@ -43,7 +43,7 @@ function renderEntry(entry) {
   imageDiv.setAttribute('class', 'column-half padding-left-0');
   outerListItem.appendChild(imageDiv);
   var imageElement = document.createElement('img');
-  imageElement.setAttribute('class', 'col-sm-full');
+  imageElement.setAttribute('class', 'full-width');
   imageElement.setAttribute('src', entry['photo-url']);
   imageDiv.appendChild(imageElement);
   var textDiv = document.createElement('div');
@@ -62,6 +62,8 @@ function renderEntry(entry) {
 
 var viewEntries = document.querySelector('.view-entries');
 
-for (var i = 0; i < data.entries.length; i++) {
-  viewEntries.appendChild(renderEntry(data.entries[i]));
-}
+window.addEventListener('DOMContentLoaded', function (event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    viewEntries.appendChild(renderEntry(data.entries[i]));
+  }
+});
