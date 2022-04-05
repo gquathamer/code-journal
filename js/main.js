@@ -75,3 +75,9 @@ newEntryButton.addEventListener('click', function (event) {
     }
   }
 });
+
+var noEntries = document.querySelector('.no-entries');
+
+if (data.entries.length > 0) {
+  noEntries.setAttribute('class', 'row justify-content no-entries hidden');
+}
