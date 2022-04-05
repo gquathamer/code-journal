@@ -34,14 +34,14 @@ function renderEntry(entry) {
   var outerListItem = document.createElement('li');
   outerListItem.setAttribute('class', 'row bottom-margin');
   var imageDiv = document.createElement('div');
-  imageDiv.setAttribute('class', 'column-half padding-left-0');
+  imageDiv.setAttribute('class', 'column-half padding-left-0 top-margin');
   outerListItem.appendChild(imageDiv);
   var imageElement = document.createElement('img');
   imageElement.setAttribute('class', 'full-width');
   imageElement.setAttribute('src', entry['photo-url']);
   imageDiv.appendChild(imageElement);
   var textDiv = document.createElement('div');
-  textDiv.setAttribute('class', 'column-half');
+  textDiv.setAttribute('class', 'column-half top-margin');
   outerListItem.appendChild(textDiv);
   var entryTitle = document.createElement('h2');
   entryTitle.setAttribute('class', 'top-margin-0');

@@ -26,6 +26,11 @@ h4 {
   font-weight: 100;
 }
 
+img {
+  height: 300px;
+  object-fit: cover;
+}
+
 input,
 textarea {
   padding: 0.5rem;
@@ -48,7 +53,8 @@ button {
 
 input,
 textarea,
-button {
+button,
+img {
   border-radius: 0.25rem;
 }
 
