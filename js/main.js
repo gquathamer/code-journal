@@ -9,6 +9,8 @@ photoUrl.addEventListener('blur', function (event) {
 
 var entryForm = document.forms[0];
 
+var noEntries = document.querySelector('.no-entries');
+
 entryForm.addEventListener('submit', function (event) {
   event.preventDefault();
   var formControl = {};
@@ -28,6 +30,10 @@ entryForm.addEventListener('submit', function (event) {
       entryViewElements[j].classList.add('hidden');
     }
   }
+  if (data.entries.length > 0) {
+    noEntries.setAttribute('class', 'row justify-content no-entries hidden');
+  }
+
 });
 
 function renderEntry(entry) {
@@ -75,9 +81,3 @@ newEntryButton.addEventListener('click', function (event) {
     }
   }
 });
-
-var noEntries = document.querySelector('.no-entries');
-
-if (data.entries.length > 0) {
-  noEntries.setAttribute('class', 'row justify-content no-entries hidden');
-}
