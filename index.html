@@ -19,21 +19,22 @@
 </head>
 <body>
   <header>
-    <div class="container row align-items">
+    <nav class="container row align-items">
       <h2 class="white-text no-margin">Code Journal</h2>
-      <h4 class="white-text no-margin padding-half-em margin-left-em">Entries</h4>
-    </div>
+      <a href="" class="white-text no-margin padding-half-em margin-left-em">Entries</a>
+    </nav>
   </header>
   <main>
-    <div data-view="entries" class="container">
-      <nav class="row space-between top-margin">
+    <div data-view="entries" class="entry-view container">
+      <div class="row space-between top-margin">
         <h1 class="no-margin font-size-2-em">Entries</h1>
-        <button>NEW</button>
-      </nav>
+        <!--<a href="" id="new-entry">NEW</a>-->
+        <button id="new-entry">NEW</button>
+      </div>
       <ul class="view-entries">
       </ul>
     </div>
-    <div data-view="entry-form" class="container">
+    <div data-view="entry-form" class="entry-view container hidden">
       <form id="create-entry" class="row">
         <h1 class="full-flex">New Entry</h1>
         <div class="column-half padding-left-0">

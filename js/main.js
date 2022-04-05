@@ -20,21 +20,15 @@ entryForm.addEventListener('submit', function (event) {
   data.entries.unshift(formControl);
   photoWindow.src = './images/placeholder-image-square.jpg';
   entryForm.reset();
-  var dataModelString = JSON.stringify(data);
-  localStorage.setItem('data-model', dataModelString);
+  viewEntries.prepend(renderEntry(formControl));
+  for (var j = 0; j < entryViewElements.length; j++) {
+    if (entryViewElements[j].getAttribute('data-view') === 'entries') {
+      entryViewElements[j].classList.remove('hidden');
+    } else {
+      entryViewElements[j].classList.add('hidden');
+    }
+  }
 });
-
-/*
-<li class="row bottom-margin">
-  <div class="column-half padding-left-0">
-    <img id="dummy-entry-1" class="full-width" src="./images/placeholder-image-square.jpg" alt="placeholder-image-square">
-  </div>
-  <div class="column-half">
-    <h2>Journal Entry Title</h2>
-    <p>Journal Entry text to be displayed here</p>
-  </div>
-</li>
-*/
 
 function renderEntry(entry) {
   var outerListItem = document.createElement('li');
@@ -65,5 +59,19 @@ var viewEntries = document.querySelector('.view-entries');
 window.addEventListener('DOMContentLoaded', function (event) {
   for (var i = 0; i < data.entries.length; i++) {
     viewEntries.appendChild(renderEntry(data.entries[i]));
+  }
+});
+
+var newEntryButton = document.querySelector('#new-entry');
+
+var entryViewElements = document.querySelectorAll('.entry-view');
+
+newEntryButton.addEventListener('click', function (event) {
+  for (var i = 0; i < entryViewElements.length; i++) {
+    if (entryViewElements[i].getAttribute('data-view') === 'entries') {
+      entryViewElements[i].classList.add('hidden');
+    } else {
+      entryViewElements[i].classList.remove('hidden');
+    }
   }
 });
