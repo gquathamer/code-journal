@@ -19,16 +19,28 @@
 </head>
 <body>
   <header>
-    <div class="container">
+    <nav class="container row align-items">
       <h2 class="white-text no-margin">Code Journal</h2>
-    </div>
+      <a href="" class="white-text no-margin padding-half-em margin-left-em">Entries</a>
+    </nav>
   </header>
   <main>
-    <div data-view="entry-form" class="container">
+    <div data-view="entries" class="entry-view container">
+      <div class="row space-between top-margin">
+        <h1 class="no-margin font-size-2-em">Entries</h1>
+        <button id="new-entry">NEW</button>
+      </div>
+      <div class="row justify-content no-entries">
+        <h4>No entries have been recorded</h4>
+      </div>
+      <ul class="view-entries">
+      </ul>
+    </div>
+    <div data-view="entry-form" class="entry-view container hidden">
       <form id="create-entry" class="row">
         <h1 class="full-flex">New Entry</h1>
         <div class="column-half padding-left-0">
-          <img id="photo-window" class="col-sm-full" src="./images/placeholder-image-square.jpg" alt="placeholder-image-square">
+          <img id="photo-window" class="full-width" src="./images/placeholder-image-square.jpg" alt="placeholder-image-square">
         </div>
         <div class="column-half">
           <label for="title">Title</label>
