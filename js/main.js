@@ -92,3 +92,18 @@ newEntryButton.addEventListener('click', function (event) {
 if (data.entries.length > 0) {
   noEntries.setAttribute('class', 'row justify-content no-entries hidden');
 }
+
+var viewEntriesParentElement = document.querySelector('.view-entries');
+
+viewEntriesParentElement.addEventListener('click', function (event) {
+  if (event.target.tagName === 'I') {
+    for (var i = 0; i < entryViewElements.length; i++) {
+      if (entryViewElements[i].getAttribute('data-view') === 'entries') {
+        entryViewElements[i].classList.add('hidden');
+      } else {
+        entryViewElements[i].classList.remove('hidden');
+      }
+    }
+    data.editing = data.entries[event.target.closest('LI').getAttribute('data-entry-id')];
+  }
+});
