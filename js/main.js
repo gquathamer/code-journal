@@ -36,9 +36,10 @@ entryForm.addEventListener('submit', function (event) {
 
 });
 
-function renderEntry(entry) {
+function renderEntry(entry, id) {
   var outerListItem = document.createElement('li');
   outerListItem.setAttribute('class', 'row bottom-margin');
+  outerListItem.setAttribute('data-entry-id', id);
   var imageDiv = document.createElement('div');
   imageDiv.setAttribute('class', 'column-half padding-left-0 top-margin');
   outerListItem.appendChild(imageDiv);
@@ -49,10 +50,16 @@ function renderEntry(entry) {
   var textDiv = document.createElement('div');
   textDiv.setAttribute('class', 'column-half top-margin');
   outerListItem.appendChild(textDiv);
+  var titleEditRow = document.createElement('div');
+  titleEditRow.setAttribute('class', 'row justify-between');
+  textDiv.appendChild(titleEditRow);
   var entryTitle = document.createElement('h2');
   entryTitle.setAttribute('class', 'top-margin-0');
   entryTitle.textContent = entry.title;
-  textDiv.appendChild(entryTitle);
+  titleEditRow.appendChild(entryTitle);
+  var editIcon = document.createElement('i');
+  editIcon.setAttribute('class', 'fas fa-edit');
+  titleEditRow.appendChild(editIcon);
   var entryNotes = document.createElement('p');
   entryNotes.setAttribute('class', 'top-margin-0');
   entryNotes.textContent = entry.notes;
@@ -64,7 +71,7 @@ var viewEntries = document.querySelector('.view-entries');
 
 window.addEventListener('DOMContentLoaded', function (event) {
   for (var i = 0; i < data.entries.length; i++) {
-    viewEntries.appendChild(renderEntry(data.entries[i]));
+    viewEntries.appendChild(renderEntry(data.entries[i], i));
   }
 });
 
@@ -81,3 +88,7 @@ newEntryButton.addEventListener('click', function (event) {
     }
   }
 });
+
+if (data.entries.length > 0) {
+  noEntries.setAttribute('class', 'row justify-content no-entries hidden');
+}

@@ -118,6 +118,10 @@ textarea:focus {
   justify-content: end;
 }
 
+.justify-between {
+  justify-content: space-between;
+}
+
 .justify-content {
   justify-content: center;
 }
@@ -144,4 +148,8 @@ textarea:focus {
 
 .font-size-2-em {
   font-size: 2em;
+}
+
+.flex-half {
+  flex-basis: 50%;
 }
