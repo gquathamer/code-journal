@@ -17,12 +17,17 @@ entryForm.addEventListener('submit', function (event) {
   for (var i = 0; i < entryForm.elements.length - 1; i++) {
     formControl[entryForm.elements[i].name] = entryForm.elements[i].value;
   }
-  formControl.entryId = data.nextEntryId;
-  data.nextEntryId++;
-  data.entries.unshift(formControl);
-  photoWindow.src = './images/placeholder-image-square.jpg';
-  entryForm.reset();
-  viewEntries.prepend(renderEntry(formControl));
+  if (data.editing === null) {
+    formControl.entryId = data.nextEntryId;
+    data.nextEntryId++;
+    data.entries.unshift(formControl);
+    photoWindow.src = './images/placeholder-image-square.jpg';
+    entryForm.reset();
+    viewEntries.prepend(renderEntry(formControl));
+  } else {
+    data.entries[data.editing.entryId] = formControl;
+    // need to grab the element that is the previous version, and use element.replaceWith() to change it to new one
+  }
   for (var j = 0; j < entryViewElements.length; j++) {
     if (entryViewElements[j].getAttribute('data-view') === 'entries') {
       entryViewElements[j].classList.remove('hidden');
@@ -33,7 +38,6 @@ entryForm.addEventListener('submit', function (event) {
   if (data.entries.length > 0) {
     noEntries.setAttribute('class', 'row justify-content no-entries hidden');
   }
-
 });
 
 function renderEntry(entry, id) {
@@ -105,5 +109,10 @@ viewEntriesParentElement.addEventListener('click', function (event) {
       }
     }
     data.editing = data.entries[event.target.closest('LI').getAttribute('data-entry-id')];
+    data.editing.entryId = event.target.closest('LI').getAttribute('data-entry-id');
+    for (var j = 0; j < entryForm.elements.length - 1; j++) {
+      entryForm.elements[j].value = data.editing[entryForm.elements[j].name];
+    }
+    photoWindow.src = data.editing['photo-url'];
   }
 });
