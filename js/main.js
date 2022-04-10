@@ -2,14 +2,16 @@
 /* exported data */
 var photoUrl = document.querySelector('#entry-photo');
 var photoWindow = document.querySelector('#photo-window');
+var entryForm = document.forms[0];
+var noEntries = document.querySelector('.no-entries');
+var viewEntriesParentElement = document.querySelector('.view-entries');
+var newEntryButton = document.querySelector('#new-entry');
+var entryViewElements = document.querySelectorAll('.entry-view');
+var viewEntries = document.querySelector('.view-entries');
 
 photoUrl.addEventListener('blur', function (event) {
   photoWindow.src = photoUrl.value;
 });
-
-var entryForm = document.forms[0];
-
-var noEntries = document.querySelector('.no-entries');
 
 entryForm.addEventListener('submit', function (event) {
   event.preventDefault();
@@ -17,22 +19,34 @@ entryForm.addEventListener('submit', function (event) {
   for (var i = 0; i < entryForm.elements.length - 1; i++) {
     formControl[entryForm.elements[i].name] = entryForm.elements[i].value;
   }
+  // formControl.entryId = data.entries.length;
   if (data.editing === null) {
-    formControl.entryId = data.nextEntryId;
     data.nextEntryId++;
     data.entries.unshift(formControl);
     photoWindow.src = './images/placeholder-image-square.jpg';
     entryForm.reset();
-    viewEntries.prepend(renderEntry(formControl));
+    viewEntries.innerHTML = '';
+    for (var j = 0; j < data.entries.length; j++) {
+      viewEntries.appendChild(renderEntry(data.entries[j], j));
+    }
+    // viewEntries.prepend(renderEntry(formControl, formControl.entryId));
   } else {
     data.entries[data.editing.entryId] = formControl;
+    photoWindow.src = './images/placeholder-image-square.jpg';
+    entryForm.reset();
+    viewEntries.innerHTML = '';
+    for (var k = 0; k < data.entries.length; k++) {
+      viewEntries.appendChild(renderEntry(data.entries[k], k));
+    }
     // need to grab the element that is the previous version, and use element.replaceWith() to change it to new one
+    // var currentListItem = document.querySelector('[data-entry-id="' + data.editing.entryId + '"]');
+    // currentListItem.replaceWith(renderEntry(formControl, formControl.entryId));
   }
-  for (var j = 0; j < entryViewElements.length; j++) {
-    if (entryViewElements[j].getAttribute('data-view') === 'entries') {
-      entryViewElements[j].classList.remove('hidden');
+  for (var l = 0; l < entryViewElements.length; l++) {
+    if (entryViewElements[l].getAttribute('data-view') === 'entries') {
+      entryViewElements[l].classList.remove('hidden');
     } else {
-      entryViewElements[j].classList.add('hidden');
+      entryViewElements[l].classList.add('hidden');
     }
   }
   if (data.entries.length > 0) {
@@ -71,19 +85,14 @@ function renderEntry(entry, id) {
   return outerListItem;
 }
 
-var viewEntries = document.querySelector('.view-entries');
-
 window.addEventListener('DOMContentLoaded', function (event) {
   for (var i = 0; i < data.entries.length; i++) {
     viewEntries.appendChild(renderEntry(data.entries[i], i));
   }
 });
 
-var newEntryButton = document.querySelector('#new-entry');
-
-var entryViewElements = document.querySelectorAll('.entry-view');
-
 newEntryButton.addEventListener('click', function (event) {
+  data.editing = null;
   for (var i = 0; i < entryViewElements.length; i++) {
     if (entryViewElements[i].getAttribute('data-view') === 'entries') {
       entryViewElements[i].classList.add('hidden');
@@ -97,8 +106,6 @@ if (data.entries.length > 0) {
   noEntries.setAttribute('class', 'row justify-content no-entries hidden');
 }
 
-var viewEntriesParentElement = document.querySelector('.view-entries');
-
 viewEntriesParentElement.addEventListener('click', function (event) {
   if (event.target.tagName === 'I') {
     for (var i = 0; i < entryViewElements.length; i++) {
@@ -108,8 +115,12 @@ viewEntriesParentElement.addEventListener('click', function (event) {
         entryViewElements[i].classList.remove('hidden');
       }
     }
-    data.editing = data.entries[event.target.closest('LI').getAttribute('data-entry-id')];
-    data.editing.entryId = event.target.closest('LI').getAttribute('data-entry-id');
+    for (var k = 0; k < data.entries.length; k++) {
+      if (data.entries[k].entryId === data.entries[event.target.closest('LI').getAttribute('data-entry-id')].entryId) {
+        data.editing = data.entries[event.target.closest('LI').getAttribute('data-entry-id')];
+        data.editing.entryId = event.target.closest('LI').getAttribute('data-entry-id');
+      }
+    }
     for (var j = 0; j < entryForm.elements.length - 1; j++) {
       entryForm.elements[j].value = data.editing[entryForm.elements[j].name];
     }
