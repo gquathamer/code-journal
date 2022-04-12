@@ -8,6 +8,12 @@ var viewEntriesParentElement = document.querySelector('.view-entries');
 var newEntryButton = document.querySelector('#new-entry');
 var entryViewElements = document.querySelectorAll('.entry-view');
 var viewEntries = document.querySelector('.view-entries');
+var deleteButton = document.querySelector('.delete');
+var deleteRow = document.querySelector('.delete-row');
+var modalOverlay = document.querySelector('.overlay');
+var modal = document.querySelector('.modal');
+var cancelButton = document.querySelector('.cancel');
+var confirmButton = document.querySelector('.confirm');
 
 photoUrl.addEventListener('blur', function (event) {
   photoWindow.src = photoUrl.value;
@@ -19,7 +25,6 @@ entryForm.addEventListener('submit', function (event) {
   for (var i = 0; i < entryForm.elements.length - 1; i++) {
     formControl[entryForm.elements[i].name] = entryForm.elements[i].value;
   }
-  // formControl.entryId = data.entries.length;
   if (data.editing === null) {
     data.nextEntryId++;
     data.entries.unshift(formControl);
@@ -29,7 +34,6 @@ entryForm.addEventListener('submit', function (event) {
     for (var j = 0; j < data.entries.length; j++) {
       viewEntries.appendChild(renderEntry(data.entries[j], j));
     }
-    // viewEntries.prepend(renderEntry(formControl, formControl.entryId));
   } else {
     data.entries[data.editing.entryId] = formControl;
     photoWindow.src = './images/placeholder-image-square.jpg';
@@ -38,9 +42,6 @@ entryForm.addEventListener('submit', function (event) {
     for (var k = 0; k < data.entries.length; k++) {
       viewEntries.appendChild(renderEntry(data.entries[k], k));
     }
-    // need to grab the element that is the previous version, and use element.replaceWith() to change it to new one
-    // var currentListItem = document.querySelector('[data-entry-id="' + data.editing.entryId + '"]');
-    // currentListItem.replaceWith(renderEntry(formControl, formControl.entryId));
   }
   for (var l = 0; l < entryViewElements.length; l++) {
     if (entryViewElements[l].getAttribute('data-view') === 'entries') {
@@ -100,6 +101,9 @@ newEntryButton.addEventListener('click', function (event) {
       entryViewElements[i].classList.remove('hidden');
     }
   }
+  deleteButton.classList.add('hidden');
+  deleteRow.classList.remove('justify-between');
+  deleteRow.classList.add('justify-end');
 });
 
 if (data.entries.length > 0) {
@@ -125,5 +129,41 @@ viewEntriesParentElement.addEventListener('click', function (event) {
       entryForm.elements[j].value = data.editing[entryForm.elements[j].name];
     }
     photoWindow.src = data.editing['photo-url'];
+    deleteButton.classList.remove('hidden');
+    deleteRow.classList.add('justify-between');
+    deleteRow.classList.remove('justify-end');
+  }
+});
+
+deleteButton.addEventListener('click', function (event) {
+  event.preventDefault();
+  modalOverlay.classList.remove('hidden');
+  modal.classList.remove('hidden');
+});
+
+cancelButton.addEventListener('click', function (event) {
+  event.preventDefault();
+  modalOverlay.classList.add('hidden');
+  modal.classList.add('hidden');
+});
+
+confirmButton.addEventListener('click', function (event) {
+  event.preventDefault();
+  modalOverlay.classList.add('hidden');
+  modal.classList.add('hidden');
+  data.entries.splice(data.editing.entryId, 1);
+  photoWindow.src = './images/placeholder-image-square.jpg';
+  entryForm.reset();
+  viewEntries.innerHTML = '';
+  for (var k = 0; k < data.entries.length; k++) {
+    viewEntries.appendChild(renderEntry(data.entries[k], k));
+  }
+  data.editing = null;
+  for (var l = 0; l < entryViewElements.length; l++) {
+    if (entryViewElements[l].getAttribute('data-view') === 'entries') {
+      entryViewElements[l].classList.remove('hidden');
+    } else {
+      entryViewElements[l].classList.add('hidden');
+    }
   }
 });

@@ -51,6 +51,24 @@ button {
   transition: background-color 0.15s ease;
 }
 
+button.cancel {
+  background-color: lightgray;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  text-transform: none;
+}
+
+button.confirm {
+  background-color: orangered;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  text-transform: none;
+}
+
 input,
 textarea,
 button,
@@ -72,6 +90,10 @@ textarea:focus {
   outline: none;
   border: 1px solid rgb(150, 66, 233);
   box-shadow: 0 0 1px 1px rgba(150, 66, 233, 0.6);
+}
+
+i:hover {
+  cursor: pointer;
 }
 
 .hidden {
@@ -152,4 +174,40 @@ textarea:focus {
 
 .flex-half {
   flex-basis: 50%;
+}
+
+.position-fixed {
+  position: fixed;
+}
+
+.align-text {
+  text-align: center;
+}
+
+.delete {
+  all: revert;
+  border: none;
+  color: red;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.modal {
+  outline: black;
+  background-color: white;
+  border-radius: 5px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0.75rem;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.75);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
 }
